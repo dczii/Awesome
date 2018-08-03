@@ -13,11 +13,6 @@ export default class App extends React.Component {
     };
   }
 
-  setView = (val) => {
-    let newValue = val ? false : true
-    this.setState({view: newValue})
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -25,26 +20,30 @@ export default class App extends React.Component {
           style={{}}
           source={{uri: 'https://dczii.github.io/images/logo.png'}} style={{width: 100, height: 40}} />
         {this.state.view ? 
-          <View style={{width: 200, textAlign: 'left'}}>
+          <View style={{width: 200}}>
             <TextInput
               style={{height: 40}}
               placeholder='Whole Name'
-              onChangeText={(name) => this.setState({name})} />
+              onChangeText={(name) => this.setState({name})} 
+              value={this.state.name} />
             <TextInput
               style={{height: 40}}
               placeholder='Address'
-              onChangeText={(address) => this.setState({address})} />
+              onChangeText={(address) => this.setState({address})} 
+              value={this.state.address} />
             <TextInput
               style={{height: 40}}
               placeholder='Age'
-              onChangeText={(age) => this.setState({age})} />
+              onChangeText={(age) => this.setState({age})} 
+              value={this.state.age} />
             <TextInput
               style={{height: 40}}
               placeholder='Country'
-              onChangeText={(country) => this.setState({country})} />
+              onChangeText={(country) => this.setState({country})} 
+              value={this.state.country} />
           </View>
         : 
-          <View style={{width: 200, textAlign: 'left', fontSize: 16}}>
+          <View style={{width: 200, fontSize: 16}}>
             <Text>Name: {this.state.name}</Text>
             <Text>Address: {this.state.address}</Text>
             <Text>Age: {this.state.age}</Text>
