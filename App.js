@@ -9,11 +9,6 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      address: '',
-      age: '',
-      country: '',
-      view: true,
       photos: {},
     };
   }
@@ -38,51 +33,7 @@ export default class App extends React.Component {
         <Image 
           style={{}}
           source={{uri: 'https://dczii.github.io/images/logo.png'}} style={{width: 100, height: 40}} />
-        {this.state.view ? 
-          <View style={{width: 200}}>
-            <TextInput
-              style={{height: 40}}
-              placeholder='Whole Name'
-              onChangeText={(name) => this.setState({name})} 
-              value={this.state.name} />
-            <TextInput
-              style={{height: 40}}
-              placeholder='Address'
-              onChangeText={(address) => this.setState({address})} 
-              value={this.state.address} />
-            <TextInput
-              style={{height: 40}}
-              placeholder='Age'
-              onChangeText={(age) => this.setState({age})} 
-              value={this.state.age} />
-            <TextInput
-              style={{height: 40}}
-              placeholder='Country'
-              onChangeText={(country) => this.setState({country})} 
-              value={this.state.country} />
-          </View>
-        : 
-          <View style={{width: 200, fontSize: 16}}>
-            <Text>Name: {this.state.name}</Text>
-            <Text>Address: {this.state.address}</Text>
-            <Text>Age: {this.state.age}</Text>
-            <Text>Country: {this.state.country}</Text>
-          </View>
-        }
         
-
-        {this.state.view ? 
-          <Button
-            onPress={() => {this.setState({view: false})}}
-            title='Submit'
-            color="#841584" />
-        :
-          <Button
-            onPress={() => {this.setState({view: true})}}
-            title='Edit'
-            color="#841584" />
-        }
-
         {!_.isEmpty(this.state.photos) ? 
           <Button
             onPress={() => {this.setState({ photos: {} })}}
