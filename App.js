@@ -44,13 +44,19 @@ export default class App extends React.Component {
 
       return (
         <View style={styles.container}>
-          <ActivityIndicator size='large' />
+          <Text>You have successfully Logged in using your firebase account.</Text>
+          <Buttons onPress={() => this.onSignOut()}>Log Out</Buttons>
         </View>
       )
     }
 
     return (
       <View style={styles.container}>
+        <Text>ios v{majorVersionIOS}</Text>
+        <Image 
+          style={{}}
+          source={{uri: 'https://dczii.github.io/images/logo.png'}} style={{width: 100, height: 40}} />
+
         <Input 
           label='Email'
           placeHolder='Enter Email'
@@ -80,8 +86,23 @@ export default class App extends React.Component {
     };
   }
 
+
+  onPressSignIn = () => {
+    this.setState({ authenticating: true, email: '', password: '' });
+  }
+
+  onSignOut = () => {
+    this.setState({ authenticating: false });
+
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      console.log('signing out');
+    }).catch(function(error) {
+    });
+  }
+
   _handleButtonPress = () => {
-   CameraRoll.getPhotos({
+    CameraRoll.getPhotos({
        first: 20,
        assetType: 'Photos',
      })
@@ -91,19 +112,11 @@ export default class App extends React.Component {
      .catch((err) => {
         //Error Loading Images
      });
-   };
-
-   onPressSignIn() {
-    this.setState({ authenticating: true });
-   }
+ };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>{majorVersionIOS}</Text>
-        <Image 
-          style={{}}
-          source={{uri: 'https://dczii.github.io/images/logo.png'}} style={{width: 100, height: 40}} />
           
           {this.renderCurrentState()}
 
